@@ -38,6 +38,8 @@ public final class LLDJW {
 
     private final String token;
 
+    private CacheLevel cacheLevel = CacheLevel.ALL;
+    private final LLDJWGateway gateway = new LLDJWGateway(this);
     private final Object logMutex = new Object();
     private LLDJWLog log = new Log();
     private RestHandler restHandler = new RestHandler(new OkHttpClient());
@@ -54,6 +56,39 @@ public final class LLDJW {
             throw new IllegalArgumentException("token is null or empty");
         }
         this.token = token;
+    }
+
+    //
+    // Core.
+    //
+
+    /**
+     * Gets the cache level.
+     * @return The current cache level.
+     */
+    public CacheLevel getCacheLevel() {
+        return cacheLevel;
+    }
+
+    /**
+     * Sets the cache level.
+     * @see CacheLevel for more information.
+     * @param cacheLevel The level.
+     * @throws NullPointerException if the level is null.
+     */
+    public void useCacheLevel(CacheLevel cacheLevel) {
+        if(cacheLevel == null) {
+            throw new NullPointerException("cache level is null");
+        }
+        this.cacheLevel = cacheLevel;
+    }
+
+    /**
+     * Gets the associated gateway object.
+     * @return The gateway, never null.
+     */
+    public LLDJWGateway gateway() {
+        return gateway;
     }
 
     //
