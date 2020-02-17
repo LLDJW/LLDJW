@@ -14,31 +14,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.lldjw.api.log;
+package com.github.lldjw.api.entity;
 
 /**
- * LLDJWLogLevel represents the log level.
+ * Assignable represents an interface that allows the supertype to be modified based off of an offered value.
+ * @param <F> The type of offered value.
  */
-public enum LLDJWLogLevel {
+public interface Assignable<F> {
 
     /**
-     * Only fatal events will be logged.
+     * Whether or not the offered value is compatible with the supertype.
+     * This is true by default, but behaviour can be changed.
+     * @param from The offered value.
+     * @return True (default) if it is compatible, false otherwise.
      */
-    FATAL,
+    default boolean isCompatible(F from) {
+        return true;
+    }
 
     /**
-     * Fatal events and information (such as warning) will be logged.
+     * Change the supertype.
+     * @param from The offered value.
      */
-    INFO,
-
-    /**
-     * Everything will be logged.
-     */
-    TRACE,
-
-    /**
-     * Logging is disabled.
-     */
-    NONE,
+    void offer(F from);
 
 }

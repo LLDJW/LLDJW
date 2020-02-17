@@ -14,31 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.lldjw.api.log;
+package com.github.lldjw.api.entity;
 
-/**
- * LLDJWLogLevel represents the log level.
- */
-public enum LLDJWLogLevel {
+// TODO: document.
+public final class WebHook implements Assignable<WebHook> {
 
-    /**
-     * Only fatal events will be logged.
-     */
-    FATAL,
-
-    /**
-     * Fatal events and information (such as warning) will be logged.
-     */
-    INFO,
-
-    /**
-     * Everything will be logged.
-     */
-    TRACE,
-
-    /**
-     * Logging is disabled.
-     */
-    NONE,
+    @Override
+    public void offer(WebHook from) {
+        // TODO: implement.
+    }
 
 }

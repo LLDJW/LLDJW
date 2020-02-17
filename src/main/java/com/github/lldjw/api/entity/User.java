@@ -14,29 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.lldjw.internal;
+package com.github.lldjw.api.entity;
 
-import com.github.lldjw.api.log.LLDJWLog;
-import com.github.lldjw.api.log.LLDJWLogLevel;
+import de.arraying.kotys.JSON;
 
-public final class LLDJWLogImpl implements LLDJWLog {
-
-    private LLDJWLogLevel level = LLDJWLogLevel.INFO;
+// TODO: document.
+public final class User implements Assignable<JSON> {
 
     @Override
-    public void setLevel(LLDJWLogLevel level) {
-        this.level = level;
-    }
-
-    @Override
-    public void log(LLDJWLogLevel level, String message, Object... format) {
-        if(level.ordinal() <= this.level.ordinal()) {
-            System.out.println(new StringBuilder("[")
-                    .append(level)
-                    .append("] ")
-                    .append(String.format(message, (Object[]) format))
-            );
-        }
+    public void offer(JSON from) {
+        // TODO: implement.
     }
 
 }

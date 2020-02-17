@@ -7,20 +7,9 @@
     <groupId>com.github.lldjw</groupId>
     <artifactId>lldjw</artifactId>
     <version>0.1.0</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
     <repositories>
+        <!-- Add GitHub projects as dependencies -->
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -28,17 +17,43 @@
     </repositories>
 
     <dependencies>
+
+        <!-- JSON library -->
         <dependency>
             <groupId>com.github.Arraying</groupId>
             <artifactId>Kotys</artifactId>
             <version>LATEST</version>
         </dependency>
+
+        <!-- HTTP/REST library -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>4.3.1</version>
         </dependency>
 
+        <!-- Logging hook -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!-- Compile Java 8 -->
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

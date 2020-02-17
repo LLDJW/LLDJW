@@ -16,9 +16,11 @@
  */
 package com.github.lldjw;
 
+import com.github.lldjw.api.entity.*;
 import com.github.lldjw.api.event.LLDJWEventHandler;
 import com.github.lldjw.api.log.LLDJWLog;
-import com.github.lldjw.internal.LLDJWLogImpl;
+import com.github.lldjw.internal.log.Log;
+import com.github.lldjw.internal.log.LogSLF4J;
 import com.github.lldjw.internal.rest.RestHandler;
 import okhttp3.OkHttpClient;
 
@@ -37,7 +39,7 @@ public final class LLDJW {
     private final String token;
 
     private final Object logMutex = new Object();
-    private LLDJWLog log = new LLDJWLogImpl();
+    private LLDJWLog log = new Log();
     private RestHandler restHandler = new RestHandler(new OkHttpClient());
     private final Object eventHandlerMutex = new Object();
     private Set<LLDJWEventHandler> eventHandlers = new HashSet<>();
@@ -53,6 +55,10 @@ public final class LLDJW {
         }
         this.token = token;
     }
+
+    //
+    // Logging related.
+    //
 
     /**
      * Gets the current log implementation.
@@ -76,6 +82,30 @@ public final class LLDJW {
         }
         synchronized(logMutex) {
             this.log = log;
+        }
+        return this;
+    }
+
+    /**
+     * Uses the default logger.
+     * @see Log for more information.
+     * @return This, for chaining.
+     */
+    public LLDJW useLogDefault() {
+        synchronized(logMutex) {
+            this.log = new Log();
+        }
+        return this;
+    }
+
+    /**
+     * Uses the Logback logger.
+     * @see LogSLF4J for more information.
+     * @return This, for chaining.
+     */
+    public LLDJW useLogSLF4J() {
+        synchronized(logMutex) {
+            this.log = new LogSLF4J();
         }
         return this;
     }
@@ -163,6 +193,87 @@ public final class LLDJW {
             }
         }
         return this;
+    }
+
+    //
+    // Entity related.
+    //
+
+    /**
+     * Attempts to find a channel by ID.
+     * @param id The ID of the channel.
+     * @param lookup The lookup settings.
+     * @return See {@link Lookup}.
+     */
+    public Channel lookupChannel(long id, Lookup lookup) {
+        // TODO: implement.
+        return null;
+    }
+
+    /**
+     * Attempts to find an emoji by ID.
+     * @param id The ID of the emoji.
+     * @param lookup The lookup settings.
+     * @return See {@link Lookup}.
+     */
+    public Emoji lookupEmoji(long id, Lookup lookup) {
+        // TODO: implement.
+        return null;
+    }
+
+    /**
+     * Attempts to find a guild by ID.
+     * @param id The ID of the guild.
+     * @param lookup The lookup settings.
+     * @return See {@link Lookup}.
+     */
+    public Guild lookupGuild(long id, Lookup lookup) {
+        // TODO: implement.
+        return null;
+    }
+
+    /**
+     * Attempts to find a guild member by ID.
+     * @param guild The ID of the guild.
+     * @param user The ID of the user.
+     * @param lookup The lookup settings.
+     * @return See {@link Lookup}.
+     */
+    public GuildMember lookupGuildMember(long guild, long user, Lookup lookup) {
+        // TODO: implement.
+        return null;
+    }
+
+    /**
+     * Attempts to find an invite by ID.
+     * @param id The ID of the invite.
+     * @param lookup The lookup settings.
+     * @return See {@link Lookup}.
+     */
+    public Invite lookupInvite(long id, Lookup lookup) {
+        // TODO: implement.
+        return null;
+    }
+    /**
+     * Attempts to find a user by ID.
+     * @param id The ID of the user.
+     * @param lookup The lookup settings.
+     * @return See {@link Lookup}.
+     */
+    public User lookupUser(long id, Lookup lookup) {
+        // TODO: implement.
+        return null;
+    }
+
+    /**
+     * Attempts to find a webhook by ID.
+     * @param id The ID of the webhook.
+     * @param lookup The lookup settings.
+     * @return See {@link Lookup}.
+     */
+    public WebHook lookupWebHook(long id, Lookup lookup) {
+        // TODO: implement.
+        return null;
     }
 
 }
